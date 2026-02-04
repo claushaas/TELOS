@@ -8,6 +8,7 @@
 
 - Se você vai **implementar** ou **avaliar consistência**, comece pela SPEC.
 - Os demais arquivos aqui são **derivados** da SPEC e existem para facilitar navegação e execução; em caso de conflito, a SPEC prevalece.
+- Nota: `Telos` é âncora singleton; “norte” temporal (opcional) vive em `TelosDeclaration`.
 
 ## Mapa de documentos (grafo v0.1)
 
@@ -19,12 +20,23 @@
 
 - [`glossario.md`](./glossario.md) — Vocabulário canônico usado na spec.
 - [`modelo-de-dados.md`](./modelo-de-dados.md) — Entidades/campos/relações e regras de unicidade/derivação.
-- [`contratos.md`](./contratos.md) — Contratos entre superfícies (Postgres/Vault/NocoDB/Vector/Lince) e invariantes de execução.
+- [`contratos.md`](./contratos.md) — Contratos entre superfícies (Postgres/Vault/NocoDB/Vector/Lince) e invariantes para execução segura (ex.: resolução de referência e confirmação).
 - [`fluxos.md`](./fluxos.md) — Fluxos canônicos (captura, clarify, indexação, recuperação, execução determinística).
 
 ### Backlog de decisões
 
-- [`pendencias.md`](./pendencias.md) — Questões abertas e decisões necessárias para implementação sem inventar regra.
+- [`pendencias.md`](./pendencias.md) — Backlog operável (P0/P1/P2) com bloqueios e DoD; evita inventar regra.
+
+### Patch plans (docs)
+
+- [`TELOS-beta-v0.1-patch-plan-02-telos-singleton-temporal.md`](./TELOS-beta-v0.1-patch-plan-02-telos-singleton-temporal.md) — opção A (Telos singleton + declarações temporais, sem reificação).
+
+## Ordem sugerida para implantação (opcional)
+
+- Fechar P0: execução segura (confirmação + resolução) + auditoria + conflito checkbox↔canônico + promoção RAW rastreável.
+- Fechar P1: espelho do Vault + detecção de mudanças + chunking/reindexação.
+- Só então: Vector Index + recuperação contextual ponta-a-ponta (com hidratação e trilha).
+- Por fim: hardening (NocoDB, permissões, RAW no índice e demais ajustes).
 
 ## Contexto fora de v0.1 (não-canônico para esta pasta)
 

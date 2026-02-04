@@ -11,16 +11,17 @@
 
 1. **Postgres é a fonte única de verdade.** Ontologia, relações e estados canônicos vivem no banco.
 2. **RAW é pré‑ontológico.** Capturas brutas não competem com a ontologia TELOS; são solo, não fruto.
-3. **Separação entre Memória e Processador.**
+3. **Anti‑reificação do SER.** O TELOS não declara “o seu telos é X”. O sistema registra apenas **declarações/compromissos datados** escolhidos pelo SER (revisáveis), e nunca os usa como atributo identitário.
+4. **Separação entre Memória e Processador.**
    - **Memória:** preserva o que foi dito/feito e o que existe.
    - **Processador:** decide encaixe, executa mudanças, e registra a ação.
-4. **Separação entre determinístico e contextual é de prioridade, não de capacidade.**
+5. **Separação entre determinístico e contextual é de prioridade, não de capacidade.**
    - NocoDB é a superfície preferencial para consultas factuais.
    - Lince é a superfície preferencial para busca conceitual/contextual.
    - Lince pode executar CRUD determinístico sob comando explícito.
-5. **Nada de rotulagem explícita para o SER.** Campos operacionais existem internamente; a UI do SER não exibe badges/labels.
-6. **Ação adequada no tempo adequado.** Nada é promovido para o canônico sem um ato explícito de esclarecimento (quando aplicável).
-7. **Auditabilidade acima de conveniência.** Toda sincronização, promoção e execução gera trilha.
+6. **Nada de rotulagem explícita para o SER.** Campos operacionais existem internamente; a UI do SER não exibe badges/labels.
+7. **Ação adequada no tempo adequado.** Nada é promovido para o canônico sem um ato explícito de esclarecimento (quando aplicável).
+8. **Auditabilidade acima de conveniência.** Toda sincronização, promoção e execução gera trilha.
 
 ---
 
@@ -33,6 +34,8 @@ Hierarquia ontológica do TELOS:
 - **Ergon** — Programa / sistema estruturado
 - **Poiesis** — Projeto com começo, meio e fim
 - **Energeia** — Ação executável (atômica)
+
+**Nota:** Telos (no banco) é âncora estrutural singleton da instância do TELOS, não perfil do SER. É impossível existir mais de um.
 
 Relação:
 
@@ -86,7 +89,7 @@ O Lince opera em dois papéis complementares:
   - executa ações (CRUD) sob comando explícito do SER.
   - conduz sessões de esclarecimento (clarify) e promove itens RAW para a ontologia.
 
-**Regra:** o Lince não executa alterações silenciosas ou inferidas. Toda ação exige intenção explícita.
+**Regra:** o Lince não executa alterações silenciosas ou inferidas. Toda ação exige intenção explícita. Execução exige resolução de alvo e confirmação quando ambígua.
 
 ---
 
@@ -197,6 +200,8 @@ No v0.1 o agendamento é **soft**:
 - **Poiesis**: `id, ergonId, praxisId(derivado), telosId(derivado), slug, title, statusInternal`
 - **Energeia**: `id, poiesisId, slug, title, statusInternal, completedAt`
 
+O **versionamento temporal do norte** (declarações) é **opcional** e serve apenas para auto‑conhecimento/auditoria; a ontologia e fluxos continuam funcionando mesmo sem histórico.
+
 ### 8.2 Regra de consistência
 
 Campos derivados (`telosId`, `praxisId` em camadas inferiores) são recalculados pela API/Processador e ignoram input direto.
@@ -302,6 +307,8 @@ slug: rotina-inicial
 ```md
 - [ ] Revisar plano semanal <!-- energeia_id: uuid -->
 ```
+
+**Nota:** checkbox não altera canônico sem canal autorizado.
 
 ---
 

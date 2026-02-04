@@ -4,11 +4,18 @@
 
 ## Ontologia (camada canônica)
 
-- **Telos** — finalidade maior (tronco).
+- **Telos** — âncora estrutural singleton do sistema (tronco). Não é atributo identitário do SER.
 - **Praxis** — área contínua de atuação.
 - **Ergon** — programa / sistema estruturado.
 - **Poiesis** — projeto com começo, meio e fim.
 - **Energeia** — ação executável (atômica).
+
+## Temporalidade e anti-reificação
+
+[SOURCE] Derivado de [`TELOS-beta-v0.1-patch-plan-02-telos-singleton-temporal.md`](./TELOS-beta-v0.1-patch-plan-02-telos-singleton-temporal.md) (seção 5). Em caso de conflito, a SPEC prevalece.
+
+- **TelosDeclaration** — declaração temporal (datada e revisável) do norte/compromisso escolhida pelo SER; serve para auto‑conhecimento e auditoria histórica, nunca como condição de funcionamento.
+- **Anti‑Reificação do SER** — regra que proíbe o sistema de afirmar identidades (“seu telos é X”), preservando agência e temporalidade.
 
 ## Planos (camadas do sistema)
 
@@ -50,3 +57,6 @@
 
 - **Auditabilidade** — prioridade de registrar sincronizações, promoções e execuções (trilha de auditoria).
 - **`auditRef` (opcional)** — referência para amarrar ações e registros de auditoria.
+- **AuditEvent** — registro atômico de uma ação do sistema (ator + motivo + before/after + correlação).
+- **Undo / Tombstone** — reversibilidade mínima por marcação de deleção (ex.: `deletedAt`) e/ou janela de desfazer.
+- **Referência humana (`human_ref`)** — referência textual do SER a um alvo (“tarefa X”), a ser resolvida com confirmação quando ambígua.
